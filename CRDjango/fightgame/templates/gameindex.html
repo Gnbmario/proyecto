@@ -1,0 +1,22 @@
+<% load static %>
+<title>GameIndex</title>
+<ul>
+    {% for t in tournamnets %}
+        <li>
+            <p>{{ t.name }}</p>
+            <ul>
+                {% for fighter in t.fighters.all %}
+                    <li>{{ fighter.alias }}</li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+</ul>
+
+<ul>
+    {%  for combat in combats %}
+        <li>{{ combat.date }} ||{{ combat.winner.alias }} vs {{ combat.loser.alias }}</li>
+        {% endfor %}
+</ul>
+
+<img src="{% static "python.png" %}>

@@ -34,12 +34,11 @@ class Tournament(models.Model):
 class Combat(models.Model):
     tournament = models.ForeignKey(Tournament, verbose_name='Torneo',  on_delete=models.CASCADE)
     date = models.DateTimeField('Fecha/hora de inicio')
-    fighter1 = models.ForeignKey(Fighter, verbose_name='Luchador 1', related_name='cf1', on_delete=models.CASCADE)
-    fighter2 = models.ForeignKey(Fighter, verbose_name='Luchador 2', related_name='cf2', on_delete=models.CASCADE)
+    loser = models.ForeignKey(Fighter, verbose_name='Perdedor', related_name='combat_loser', on_delete=models.CASCADE)
     winner = models.ForeignKey(Fighter, verbose_name='Ganador', related_name='combat_winner', on_delete=models.CASCADE)
 
     def __str__(self):
-        return '{} vs {}'.format(self.fighter1.alias, self.figther2.alias)
+        return '{} vs {}'.format(self.winner.alias, self.loser.alias)
 
     class Meta:
         verbose_name = 'Combate'
